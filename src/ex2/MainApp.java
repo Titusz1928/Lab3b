@@ -1,9 +1,6 @@
 package ex2;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -158,19 +155,28 @@ public class MainApp {
                     for(byte i=0;i<n;i++) {
                         if (listProdus.get(i).getPret()<min){
                             min=listProdus.get(i).getPret();
-                            minInd=i;
+                            //minInd=i;
                         }
                     }
-                    System.out.println(listProdus.get(minInd));
+                    System.out.println(min);
+                    for(byte i=0;i<n;i++){
+                        if (listProdus.get(i).getPret()==min){
+                            System.out.println(listProdus.get(i));
+                        }
+                    }
+                    //System.out.println(listProdus.get(minInd));
                     break;
                 case 5:
+                    PrintStream flux_out = new PrintStream ("out.csv");
                     System.out.println("Introduceti pretul");
                     min=scan.nextFloat();
                     for(byte i=0;i<n;i++) {
                         if (listProdus.get(i).getPret()<min){
                             System.out.println(listProdus.get(i));
+                            flux_out.println(listProdus.get(i));
                         }
                     }
+                    flux_out.close();
                     break;
                 default:
                     System.out.println("error");
